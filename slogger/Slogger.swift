@@ -17,12 +17,16 @@ final public class Slogger {
     
     public func dLog(logValue: AnyObject) {
         
-        let parameters = RequestModel.getDefaultLogsDictionary("test", logType: .DefaultLog, logValue: "asd")
+        let parameters = RequestModel.getDefaultLogsDictionary("test", logType: .DefaultLog, logValue: logValue)
         
         RequestManager.sharedInstance.startRequest(.DefaultLog, parameters: parameters, successHandler: { (success) in
-            print("success")
+            print("✅slogger: success. \(success)")
         }) { (error) in
-            print("error")
+            print("❌slogger: error. \(error)")
         }
+    }
+    
+    public func configureSlogger(appName: String, serverAddress: String, secureKey: String) {
+        RequestManager.sharedInstance.configureRequestManager(appName, serverAddress: serverAddress, secureKey: secureKey)
     }
 }

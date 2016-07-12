@@ -12,7 +12,7 @@ import SwiftyJSON
 enum RequestModel: String {
     case DefaultLog = "api/addLogDefault/"
     
-    func getRequestType() -> Alamofire.Method {
+    func getRequestMethod() -> Alamofire.Method {
         switch self {
         case .DefaultLog:
             return .POST
@@ -40,7 +40,6 @@ enum RequestModel: String {
     
     static func getDefaultLogsDictionary(appName: String, logType: RequestModel, logValue: AnyObject) -> [String: AnyObject] {
         return [
-            
             "LOGTYPE":      logType.getLogType(),
             "LOGVALUE":     logValue
         ]
@@ -71,11 +70,11 @@ final class RequestManager {
     
     func startRequest(request: RequestModel, parameters: [String: AnyObject], successHandler: (success: JSON) -> Void, errorHandler: (error: NSError) -> Void) {
         
-        let method = request.getRequestType()
+        let method = request.getRequestMethod()
         let url = request.getRequestURL(self.serverAddress)
         let headers = request.getHeadersDictionary(self.secureKey, appName: self.appName)
-        
-        self.alamofireManager.request(method, url, parameters: parameters, encoding: .JSON, headers: headers).response { request, response, data, error in
+
+        self.alamofireManager.request(method, url, parameters: parameters, encoding: .URL, headers: headers).response { request, response, data, error in
             if error != nil {
                 errorHandler(error: error!)
             }
