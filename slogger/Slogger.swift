@@ -9,13 +9,12 @@
 import Foundation
 
 final public class Slogger {
-//    public static let sharedInstance = Slogger()
     
-    public init() {
+    private init() {
         //
     }
     
-    public func dLog(logValue: AnyObject) {
+    static public func dLog(logValue: AnyObject) {
         
         let parameters = RequestModel.getDefaultLogsDictionary("test", logType: .DefaultLog, logValue: logValue)
         
@@ -26,7 +25,7 @@ final public class Slogger {
         }
     }
     
-    public func configureSlogger(appName: String, serverAddress: String, secureKey: String) {
+    static public func configureSlogger(appName: String, serverAddress: String, secureKey: String) {
         RequestManager.sharedInstance.configureRequestManager(appName, serverAddress: serverAddress, secureKey: secureKey)
     }
 }
