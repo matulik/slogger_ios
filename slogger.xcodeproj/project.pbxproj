@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BA004278D97375A789EFCC3 /* Pods_slogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827123B644EB73A9D94EA1F8 /* Pods_slogger.framework */; };
 		6822D8C71D34D0D200B2C9EB /* slogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6822D8C61D34D0D200B2C9EB /* slogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6822D8CF1D34D1F900B2C9EB /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6822D8CE1D34D1F900B2C9EB /* RequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10059617EECDDD49365D4C0F /* Pods-slogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-slogger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-slogger/Pods-slogger.debug.xcconfig"; sourceTree = "<group>"; };
+		56148276A0C60A80C70E16A8 /* Pods-slogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-slogger.release.xcconfig"; path = "Pods/Target Support Files/Pods-slogger/Pods-slogger.release.xcconfig"; sourceTree = "<group>"; };
 		6822D8C31D34D0D200B2C9EB /* slogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = slogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6822D8C61D34D0D200B2C9EB /* slogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = slogger.h; sourceTree = "<group>"; };
 		6822D8C81D34D0D200B2C9EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6822D8CE1D34D1F900B2C9EB /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		827123B644EB73A9D94EA1F8 /* Pods_slogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_slogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,17 +27,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA004278D97375A789EFCC3 /* Pods_slogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1DAC4764B083E843D0503F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10059617EECDDD49365D4C0F /* Pods-slogger.debug.xcconfig */,
+				56148276A0C60A80C70E16A8 /* Pods-slogger.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		34B478D791560673C973B5F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				827123B644EB73A9D94EA1F8 /* Pods_slogger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6822D8B91D34D0D200B2C9EB = {
 			isa = PBXGroup;
 			children = (
 				6822D8C51D34D0D200B2C9EB /* slogger */,
 				6822D8C41D34D0D200B2C9EB /* Products */,
+				0D1DAC4764B083E843D0503F /* Pods */,
+				34B478D791560673C973B5F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -48,6 +74,7 @@
 			children = (
 				6822D8C61D34D0D200B2C9EB /* slogger.h */,
 				6822D8C81D34D0D200B2C9EB /* Info.plist */,
+				6822D8CE1D34D1F900B2C9EB /* RequestManager.swift */,
 			);
 			path = slogger;
 			sourceTree = "<group>";
@@ -70,10 +97,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6822D8CB1D34D0D200B2C9EB /* Build configuration list for PBXNativeTarget "slogger" */;
 			buildPhases = (
+				F5B2FC423C0A776E59847542 /* [CP] Check Pods Manifest.lock */,
 				6822D8BE1D34D0D200B2C9EB /* Sources */,
 				6822D8BF1D34D0D200B2C9EB /* Frameworks */,
 				6822D8C01D34D0D200B2C9EB /* Headers */,
 				6822D8C11D34D0D200B2C9EB /* Resources */,
+				F58B77018A1D3CF34C835D25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,11 +154,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F58B77018A1D3CF34C835D25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-slogger/Pods-slogger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5B2FC423C0A776E59847542 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6822D8BE1D34D0D200B2C9EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6822D8CF1D34D1F900B2C9EB /* RequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,31 +292,38 @@
 		};
 		6822D8CC1D34D0D200B2C9EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10059617EECDDD49365D4C0F /* Pods-slogger.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = slogger/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = matulik.slogger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		6822D8CD1D34D0D200B2C9EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56148276A0C60A80C70E16A8 /* Pods-slogger.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = slogger/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = matulik.slogger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.slogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -278,6 +348,7 @@
 				6822D8CD1D34D0D200B2C9EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
