@@ -1,3 +1,4 @@
 slogger.xcworkspace/xcuserdata/
 Pods/
 Podfile.lock
+*.playground

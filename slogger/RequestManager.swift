@@ -9,16 +9,12 @@
 import Alamofire
 import SwiftyJSON
 
-enum LogType: Int {
-    case DefaultLog = 1
-}
-
 enum RequestModel: String {
-    case defaultLog = "api/addLogDefault/"
+    case DefaultLog = "api/addLogDefault/"
     
     func getRequestType() -> Alamofire.Method {
         switch self {
-        case .defaultLog:
+        case .DefaultLog:
             return .POST
         }
     }
@@ -27,17 +23,25 @@ enum RequestModel: String {
         return serverAddres + self.rawValue
     }
     
-    func getHeadersDictionary(secureKey: String) -> [String: String] {
+    func getLogType() -> Int {
+        switch self {
+        case .DefaultLog:
+            return 1
+        }
+    }
+    
+    func getHeadersDictionary(secureKey: String, appName: String) -> [String: String] {
         return [
             "Accept":       "application/json",
-            "TOKEN":        secureKey
+            "TOKEN":        secureKey,
+            "APPNAME":      appName
         ]
     }
     
-    static func getDefaultLogsDictionary(appName: String, logType: LogType, logValue: AnyObject) -> [String: AnyObject] {
+    static func getDefaultLogsDictionary(appName: String, logType: RequestModel, logValue: AnyObject) -> [String: AnyObject] {
         return [
-            "APPNAME":      appName,
-            "LOGTYPE":      logType.rawValue,
+            
+            "LOGTYPE":      logType.getLogType(),
             "LOGVALUE":     logValue
         ]
     }
@@ -59,7 +63,7 @@ final class RequestManager {
         self.alamofireManager = Alamofire.Manager(configuration: configuration)
     }
     
-    private func configureRequestManager(appName: String, serverAddress: String, secureKey: String) {
+    func configureRequestManager(appName: String, serverAddress: String, secureKey: String) {
         self.appName = appName
         self.serverAddress = serverAddress
         self.secureKey = secureKey
@@ -69,7 +73,7 @@ final class RequestManager {
         
         let method = request.getRequestType()
         let url = request.getRequestURL(self.serverAddress)
-        let headers = request.getHeadersDictionary(self.secureKey)
+        let headers = request.getHeadersDictionary(self.secureKey, appName: self.appName)
         
         self.alamofireManager.request(method, url, parameters: parameters, encoding: .JSON, headers: headers).response { request, response, data, error in
             if error != nil {
