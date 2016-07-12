@@ -14,9 +14,13 @@ final public class Slogger {
         //
     }
     
+    static public func configureSlogger(appName: String, serverAddress: String, secureKey: String) {
+        RequestManager.sharedInstance.configureRequestManager(appName, serverAddress: serverAddress, secureKey: secureKey)
+    }
+    
     static public func dLog(logValue: AnyObject) {
         
-        let parameters = RequestModel.getDefaultLogsDictionary("test", logType: .DefaultLog, logValue: logValue)
+        let parameters = RequestModel.getDefaultLogsDictionary(.Standard, logValue: logValue)
         
         RequestManager.sharedInstance.startRequest(.DefaultLog, parameters: parameters, successHandler: { (success) in
             print("✅slogger: success. \(success)")
@@ -25,7 +29,14 @@ final public class Slogger {
         }
     }
     
-    static public func configureSlogger(appName: String, serverAddress: String, secureKey: String) {
-        RequestManager.sharedInstance.configureRequestManager(appName, serverAddress: serverAddress, secureKey: secureKey)
+    static public func dlog(logValue: AnyObject, logType: LogType) {
+        
+        let parameters = RequestModel.getDefaultLogsDictionary(logType, logValue: logValue)
+        
+        RequestManager.sharedInstance.startRequest(.DefaultLog, parameters: parameters, successHandler: { (success) in
+            print("✅slogger: success. \(success)")
+        }) { (error) in
+            print("❌slogger: error. \(error)")
+        }
     }
 }

@@ -9,6 +9,12 @@
 import Alamofire
 import SwiftyJSON
 
+public enum LogType: Int {
+    case Standard   = 0
+    case Fatal      = 1
+    case Request    = 2
+}
+
 enum RequestModel: String {
     case DefaultLog = "api/addLogDefault/"
     
@@ -23,13 +29,6 @@ enum RequestModel: String {
         return serverAddres + self.rawValue
     }
     
-    func getLogType() -> Int {
-        switch self {
-        case .DefaultLog:
-            return 1
-        }
-    }
-    
     func getHeadersDictionary(secureKey: String, appName: String) -> [String: String] {
         return [
             "Accept":       "application/json",
@@ -38,9 +37,9 @@ enum RequestModel: String {
         ]
     }
     
-    static func getDefaultLogsDictionary(appName: String, logType: RequestModel, logValue: AnyObject) -> [String: AnyObject] {
+    static func getDefaultLogsDictionary(logType: LogType, logValue: AnyObject) -> [String: AnyObject] {
         return [
-            "LOGTYPE":      logType.getLogType(),
+            "LOGTYPE":      logType.rawValue,
             "LOGVALUE":     logValue
         ]
     }
